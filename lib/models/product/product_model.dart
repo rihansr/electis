@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
-import 'category_model.dart';
+import 'attribute_model.dart';
+import '../category/category_model.dart';
 part 'product_model.g.dart';
 
 @HiveType(typeId: 5)
@@ -21,6 +22,8 @@ class Product {
   @HiveField(7)
   final bool topDeals;
   @HiveField(8)
+  final List<Attribute> attributes;
+  @HiveField(9)
   final List<Category> categories;
 
   const Product({
@@ -32,6 +35,7 @@ class Product {
     this.isNew = false,
     this.isPopular = false,
     this.topDeals = false,
+    this.attributes = const [],
     this.categories = const [],
   });
 
@@ -44,6 +48,7 @@ class Product {
     bool? isNew,
     bool? isPopular,
     bool? topDeals,
+    List<Attribute>? attributes,
     List<Category>? categories,
   }) {
     return Product(
@@ -55,6 +60,7 @@ class Product {
       isNew: isNew ?? this.isNew,
       isPopular: isPopular ?? this.isPopular,
       topDeals: topDeals ?? this.topDeals,
+      attributes: attributes ?? this.attributes,
       categories: categories ?? this.categories,
     );
   }
@@ -69,6 +75,9 @@ class Product {
       isNew: map['is_new'] ?? false,
       isPopular: map['is_popular'] ?? false,
       topDeals: map['top_deals'] ?? false,
+      attributes: List<Attribute>.from(
+        map['attributes']?.map((x) => Attribute.fromMap(x)) ?? [],
+      ),
       categories: List<Category>.from(
         map['categories']?.map((x) => Category.fromMap(x)) ?? [],
       ),
@@ -85,13 +94,14 @@ class Product {
       'is_new': isNew,
       'is_popular': isPopular,
       'top_deals': topDeals,
+      'attributes': attributes.map((x) => x.toMap()).toList(),
       'categories': categories.map((x) => x.toMap()).toList(),
     };
   }
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, image: $image, rating: $rating, price: $price, isNew: $isNew, isPopular: $isPopular, topDeals: $topDeals, categories: $categories)';
+    return 'Product(id: $id, name: $name, image: $image, rating: $rating, price: $price, isNew: $isNew, isPopular: $isPopular, topDeals: $topDeals, attributes: $attributes, categories: $categories)';
   }
 
   @override

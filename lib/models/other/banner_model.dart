@@ -2,7 +2,7 @@ class Banner {
   final int? id;
   final String? image;
 
-  Banner({
+  const Banner({
     this.id,
     this.image,
   });

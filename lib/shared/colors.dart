@@ -83,7 +83,7 @@ class ColorPalette {
         onPrimary: const Color(0xFFFFFFFF),
         secondary: const Color(0xFFD4C4FC),
         onSecondary: const Color(0xFFFFFFFF),
-        tertiary: const Color(0xFFF8ED91),
+        tertiary: const Color(0xFFFDF8D9),
         onTertiary: const Color(0xFFFFFFFF),
         surface: const Color(0xFF1D1E22),
         onSurface: const Color(0xFFFFFFFF),

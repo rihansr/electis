@@ -1,37 +1,30 @@
 import 'package:hive/hive.dart';
-part 'category_model.g.dart';
+part 'attribute_option_model.g.dart';
 
-@HiveType(typeId: 6)
-class Category {
+@HiveType(typeId: 7)
+class AttributeOption {
   @HiveField(0)
-  final int? id;
-  @HiveField(1)
   final String? name;
-  @HiveField(2)
+  @HiveField(1)
   final String? slug;
 
-  const Category({
-    this.id,
+  const AttributeOption({
     this.name,
     this.slug,
   });
 
-  Category copyWith({
-    int? id,
+  AttributeOption copyWith({
     String? name,
     String? slug,
-    String? image,
   }) {
-    return Category(
-      id: id ?? this.id,
+    return AttributeOption(
       name: name ?? this.name,
       slug: slug ?? this.slug,
     );
   }
 
-  factory Category.fromMap(Map<String, dynamic> map) {
-    return Category(
-      id: map['id'],
+  factory AttributeOption.fromMap(Map<String, dynamic> map) {
+    return AttributeOption(
       name: map['name'],
       slug: map['slug'],
     );
@@ -39,20 +32,20 @@ class Category {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'slug': slug,
     };
   }
+  
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is Category && other.id == id;
+    return other is AttributeOption && other.slug == slug;
   }
 
   @override
   int get hashCode {
-    return id.hashCode;
+    return slug.hashCode;
   }
 }

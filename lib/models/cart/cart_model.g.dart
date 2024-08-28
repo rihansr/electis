@@ -1,38 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cart_item_model.dart';
+part of 'cart_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CartItemAdapter extends TypeAdapter<CartItem> {
+class CartAdapter extends TypeAdapter<Cart> {
   @override
-  final int typeId = 4;
+  final int typeId = 0;
 
   @override
-  CartItem read(BinaryReader reader) {
+  Cart read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CartItem(
+    return Cart(
       id: fields[0] as int?,
-      product: fields[1] as Product,
-      quantity: fields[2] as int,
+      createdAt: fields[1] as DateTime?,
+      customer: fields[2] as User?,
+      items: (fields[3] as List).cast<CartItem>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, CartItem obj) {
+  void write(BinaryWriter writer, Cart obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.product)
+      ..write(obj.createdAt)
       ..writeByte(2)
-      ..write(obj.quantity);
+      ..write(obj.customer)
+      ..writeByte(3)
+      ..write(obj.items);
   }
 
   @override
@@ -41,7 +44,7 @@ class CartItemAdapter extends TypeAdapter<CartItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CartItemAdapter &&
+      other is CartAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

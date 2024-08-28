@@ -151,6 +151,7 @@ class Clipper<T> extends StatelessWidget {
                   shape: shape as ShapeBorder,
                   color: color,
                   shadows: shadows,
+                  image: backdrop,
                 ),
       child: child,
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/settings_model.dart';
+import '../models/other/settings_model.dart';
 import '../shared/shared_prefs.dart';
 
 final AppSettings appSettings = AppSettings.value;

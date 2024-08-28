@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
-import 'address_model.dart';
+import '../user/address_model.dart';
 import 'cart_item_model.dart';
-import 'user_model.dart';
+import '../user/user_model.dart';
 part 'cart_model.g.dart';
 
 
@@ -14,15 +14,12 @@ class Cart {
   @HiveField(2)
   final User? customer;
   @HiveField(3)
-  final Address? address;
-  @HiveField(4)
   final List<CartItem> items;
 
-  Cart({
+  const Cart({
     this.id,
     this.createdAt,
     this.customer,
-    this.address,
     this.items = const [],
   });
 
@@ -37,7 +34,6 @@ class Cart {
       id: id ?? this.id,
       createdAt: createdAt ?? this.createdAt,
       customer: customer ?? this.customer,
-      address: address ?? this.address,
       items: items ?? this.items,
     );
   }
@@ -47,7 +43,6 @@ class Cart {
       'id': id,
       'created_at': createdAt?.toIso8601String(),
       'customer': customer?.toMap(),
-      'address': address?.toMap(),
       'items': items.map((x) => x.toMap()).toList(),
     };
   }
@@ -58,7 +53,6 @@ class Cart {
       createdAt:
           map['created_at'] == null ? null : DateTime.parse(map['created_at']),
       customer: map['customer'] == null ? null : User.fromMap(map['customer']),
-      address: map['address'] == null ? null : Address.fromMap(map['address']),
       items: List<CartItem>.from(
         map['items']?.map((x) => CartItem.fromMap(x)) ?? [],
       ),

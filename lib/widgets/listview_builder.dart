@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ListViewBuilder<T> extends StatelessWidget {
   final ScrollController? controller;
   final bool reverse;
+  final bool shrinkWrap;
   final List<T> items;
   final Function(T item, int index) builder;
   final double itemSpacing;
@@ -16,6 +17,7 @@ class ListViewBuilder<T> extends StatelessWidget {
     super.key,
     this.controller,
     this.reverse = false,
+    this.shrinkWrap = false,
     required this.items,
     required this.builder,
     this.itemSpacing = 0,
@@ -30,6 +32,7 @@ class ListViewBuilder<T> extends StatelessWidget {
     super.key,
     this.controller,
     this.reverse = false,
+    this.shrinkWrap = false,
     required this.items,
     required this.builder,
     this.itemSpacing = 0,
@@ -43,6 +46,7 @@ class ListViewBuilder<T> extends StatelessWidget {
     super.key,
     this.controller,
     this.reverse = false,
+    this.shrinkWrap = false,
     required this.items,
     required this.builder,
     this.itemSpacing = 0,
@@ -60,7 +64,7 @@ class ListViewBuilder<T> extends StatelessWidget {
       physics: scrollPhysics,
       reverse: reverse,
       padding: spacing,
-      shrinkWrap: false,
+      shrinkWrap: shrinkWrap,
       itemCount: items.length,
       itemBuilder: (_, i) => onItemSelected != null
           ? InkWell(

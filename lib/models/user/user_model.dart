@@ -4,28 +4,28 @@ part 'user_model.g.dart';
 
 @HiveType(typeId: 2)
 class User {
-   @HiveField(0)
+  @HiveField(0)
   final int? id;
-   @HiveField(1)
+  @HiveField(1)
   final String? firstName;
-   @HiveField(2)
+  @HiveField(2)
   final String? lastName;
-   @HiveField(3)
+  @HiveField(3)
   final String? email;
-   @HiveField(4)
+  @HiveField(4)
   final String? phone;
-   @HiveField(5)
+  @HiveField(5)
   final String? gender;
-   @HiveField(6)
+  @HiveField(6)
   final String? image;
-   @HiveField(7)
+  @HiveField(7)
   final String? role;
-   @HiveField(8)
+  @HiveField(8)
   final Address? address;
-   @HiveField(9)
-  final List<Address>? addresses;
+  @HiveField(9)
+  final List<Address> addresses;
 
-  User({
+  const User({
     this.id,
     this.firstName,
     this.lastName,
@@ -35,7 +35,7 @@ class User {
     this.image,
     this.role,
     this.address,
-    this.addresses,
+    this.addresses = const [],
   });
 
   User copyWith({
@@ -76,9 +76,9 @@ class User {
       image: map['image'],
       role: map['role'],
       address: map['address'] == null ? null : Address.fromMap(map['address']),
-      addresses: map['addresses'] == null
-          ? null
-          : List<Address>.from(map['addresses'].map((x) => Address.fromMap(x))),
+      addresses: List<Address>.from(
+        map['addresses']?.map((x) => Address.fromMap(x)) ?? [],
+      ),
     );
   }
 
@@ -93,7 +93,7 @@ class User {
       'image': image,
       'role': role,
       'address': address!.toMap(),
-      'addresses': List<dynamic>.from(addresses!.map((x) => x.toMap())),
+      'addresses': List<dynamic>.from(addresses.map((x) => x.toMap())),
     };
   }
 
