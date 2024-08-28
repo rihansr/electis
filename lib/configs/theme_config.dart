@@ -23,6 +23,8 @@ ThemeData theming(ThemeMode mode) {
       onPrimary: colorPalette.onPrimary,
       secondary: colorPalette.secondary,
       onSecondary: colorPalette.onSecondary,
+      tertiary: colorPalette.tertiary,
+      onTertiary: colorPalette.onTertiary,
       surface: colorPalette.surface,
       onSurface: colorPalette.onSurface,
       error: colorPalette.error,
@@ -30,11 +32,9 @@ ThemeData theming(ThemeMode mode) {
       shadow: colorPalette.shadow,
       outline: colorPalette.outline,
       surfaceTint: Colors.transparent,
-      tertiaryContainer: colorPalette.paragraph, // for paragraph text color
-      onTertiaryContainer: colorPalette.subtitle, // for subtitle text color
     ),
     dialogBackgroundColor: colorPalette.scaffold,
-    canvasColor: colorPalette.background,
+    canvasColor: colorPalette.surface,
     primaryColor: colorPalette.primary,
     dividerColor: colorPalette.divider,
     brightness: mode == ThemeMode.light ? Brightness.light : Brightness.dark,
@@ -55,58 +55,18 @@ ThemeData theming(ThemeMode mode) {
       shadowColor: colorPalette.shadow,
       foregroundColor: colorPalette.icon,
       surfaceTintColor: Colors.transparent,
-      elevation: 0,
+      elevation: 1,
       centerTitle: true,
-      iconTheme: IconThemeData(color: colorPalette.icon, size: 24),
-      actionsIconTheme: IconThemeData(color: colorPalette.subtitle, size: 24),
+      iconTheme: IconThemeData(color: colorPalette.icon),
+      actionsIconTheme: IconThemeData(color: colorPalette.subtitle),
       titleTextStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        height: 1,
         letterSpacing: 0.15,
         color: colorPalette.headline,
       ),
     ),
-    tabBarTheme: const TabBarTheme().copyWith(
-      labelColor: Colors.white,
-      unselectedLabelColor: colorPalette.primary,
-      indicatorSize: TabBarIndicatorSize.tab,
-      labelStyle: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
-    listTileTheme: const ListTileThemeData().copyWith(
-      iconColor: colorPalette.icon,
-      minLeadingWidth: 0,
-      titleTextStyle: TextStyle(
-        fontSize: 15,
-        height: 1.5,
-        fontWeight: FontWeight.w400,
-        color: colorPalette.headline,
-      ),
-      subtitleTextStyle: TextStyle(
-        fontSize: 14,
-        height: 1.5,
-        fontWeight: FontWeight.w400,
-        color: colorPalette.subtitle,
-      ),
-    ),
-    expansionTileTheme: const ExpansionTileThemeData().copyWith(
-      backgroundColor: colorPalette.card,
-      collapsedBackgroundColor: colorPalette.card,
-      textColor: colorPalette.headline,
-      collapsedTextColor: colorPalette.headline,
-      iconColor: colorPalette.headline,
-      collapsedIconColor: colorPalette.headline,
-      shape: const RoundedRectangleBorder(),
-      collapsedShape: const RoundedRectangleBorder(),
-    ),
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme().copyWith(
       clipBehavior: Clip.antiAlias,
       color: colorPalette.card,
       surfaceTintColor: Colors.transparent,
@@ -114,11 +74,11 @@ ThemeData theming(ThemeMode mode) {
       elevation: 8,
       margin: const EdgeInsets.all(0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
       ),
     ),
     snackBarTheme: const SnackBarThemeData().copyWith(
-      backgroundColor: colorPalette.background,
+      backgroundColor: colorPalette.surface,
       contentTextStyle: TextStyle(
         fontSize: 14,
         height: 1.43,
@@ -129,27 +89,41 @@ ThemeData theming(ThemeMode mode) {
       elevation: 2,
       actionTextColor: colorPalette.paragraph,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    chipTheme: const ChipThemeData().copyWith(
+      backgroundColor: colorPalette.disable,
+      selectedColor: colorPalette.primary,
+      labelPadding: const EdgeInsets.fromLTRB(12, 4, 12, 4),
+      labelStyle: TextStyle(
+        fontSize: 14,
+        color: colorPalette.headline,
+        fontWeight: FontWeight.w500,
+      ),
+      secondaryLabelStyle: const TextStyle(
+        fontSize: 14,
+        color: Colors.white,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData().copyWith(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: colorPalette.background,
+      backgroundColor: colorPalette.surface,
       elevation: 4,
-      selectedIconTheme: IconThemeData(color: colorPalette.primary, size: 24),
-      unselectedIconTheme: IconThemeData(color: colorPalette.icon, size: 24),
-      unselectedItemColor: colorPalette.paragraph,
-      selectedItemColor: colorPalette.primary,
+      selectedIconTheme: IconThemeData(color: colorPalette.headline),
+      unselectedIconTheme: IconThemeData(color: colorPalette.subtitle),
+      unselectedItemColor: colorPalette.subtitle,
+      selectedItemColor: colorPalette.headline,
       showUnselectedLabels: true,
       selectedLabelStyle: const TextStyle(
         fontSize: 12,
-        height: 1.33,
+        height: 1.8,
         fontWeight: FontWeight.w500,
       ),
       unselectedLabelStyle: const TextStyle(
         fontSize: 12,
-        height: 1.33,
-        fontWeight: FontWeight.w500,
+        height: 1.8,
       ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme().copyWith(
       headlineLarge: TextStyle(
         fontSize: 28,
         height: 1.29,
@@ -220,52 +194,6 @@ ThemeData theming(ThemeMode mode) {
         height: 1.33,
         color: colorPalette.paragraph,
         fontWeight: FontWeight.w400,
-      ),
-    ),
-    chipTheme: ChipThemeData(
-      backgroundColor: colorPalette.scaffold,
-      selectedColor: colorPalette.primary,
-      padding: const EdgeInsets.all(6),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-        side: BorderSide(color: colorPalette.outline),
-      ),
-      labelStyle: TextStyle(
-        fontSize: 14,
-        color: colorPalette.subtitle,
-        fontWeight: FontWeight.w400,
-      ),
-      secondaryLabelStyle: const TextStyle(
-        fontSize: 14,
-        color: Colors.white,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-    dividerTheme: DividerThemeData(
-      color: colorPalette.divider,
-      thickness: 1,
-    ),
-    bottomSheetTheme: const BottomSheetThemeData().copyWith(
-      modalBackgroundColor: colorPalette.scaffold,
-      modalBarrierColor: Colors.black26,
-      clipBehavior: Clip.antiAlias,
-      shadowColor: colorPalette.shadow,
-      surfaceTintColor: Colors.transparent,
-    ),
-    popupMenuTheme: PopupMenuThemeData(
-      color: colorPalette.background,
-      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>(
-        (Set<WidgetState> states) => TextStyle(
-          fontSize: 12,
-          height: 1.33,
-          fontWeight: FontWeight.w500,
-          color: colorPalette.paragraph,
-        ),
-      ),
-      elevation: 1,
-      surfaceTintColor: Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
       ),
     ),
   );

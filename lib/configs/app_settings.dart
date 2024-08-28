@@ -18,16 +18,10 @@ class AppSettings {
   }
 
   // Theme
-  set theme(dynamic mode) {
-    if (mode == null) return;
-    _settings = settings.value.copyWith(
-      themeMode: mode is ThemeMode ? mode : ThemeMode.values.byName('$mode'),
-    );
-  }
+  set theme(ThemeMode mode) =>
+      _settings = settings.value.copyWith(themeMode: mode);
 
-  bool get isDarkTheme =>  settings.value.themeMode == ThemeMode.dark;
-
-  get switchTheme => theme = isDarkTheme ? ThemeMode.light : ThemeMode.dark;
+  ThemeMode get theme => settings.value.themeMode;
 
   // Locale
   set language(dynamic locale) {
