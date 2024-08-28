@@ -21,12 +21,12 @@ class Settings {
   }
 
   factory Settings.fromMap(Map<String, dynamic> map) => Settings(
-        themeMode: ThemeMode.values.byName(map["themeMode"]),
+        themeMode: ThemeMode.values.byName(map["theme_mode"]),
         locale: Locale(map["locale"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "themeMode": themeMode.name,
+        "theme_mode": themeMode.name,
         "locale": locale.languageCode,
       };
 

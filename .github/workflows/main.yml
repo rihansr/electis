@@ -28,4 +28,4 @@ jobs:
           with:
             artifacts: "build/app/outputs/apk/release/*"
             tag: v1.0.${{ github.run_number }}
-            token: ${{ env.RELEASE_TOKEN }}
+            token: ${{ env.RELEASE_TOKEN }} 

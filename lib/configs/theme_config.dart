@@ -192,7 +192,7 @@ ThemeData theming(ThemeMode mode) {
       bodySmall: TextStyle(
         fontSize: 12,
         height: 1.33,
-        color: colorPalette.paragraph,
+        color: colorPalette.subtitle,
         fontWeight: FontWeight.w400,
       ),
     ),

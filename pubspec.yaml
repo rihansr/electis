@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   
+  # Language
   flutter_localizations:
     sdk: flutter
   
@@ -29,6 +30,9 @@ dependencies:
   shared_preferences: ^2.3.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+
+  # Other
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_test:

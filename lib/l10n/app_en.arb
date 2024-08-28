@@ -1,7 +1,9 @@
 {
     "@@locale": "en",
     "@_TITLES": "<-----------------TITLES----------------->",
+    "searchTitle": "Search on Electis",
     "@_SUBTITLES": "<-----------------SUBTITLES----------------->",
+    "searchSubtitle": "Electronics \u2022 Shoes \u2022 Anything",
     "@_LABELS": "<-----------------LABELS----------------->",
     "home": "Home",
     "feeds": "Feeds",
@@ -10,6 +12,7 @@
     "profile": "Profile",
     "okay": "Okay",
     "retry": "Retry",
+    "bullet": "\u2022",
     "@_HINTS": "<-----------------HINTS----------------->",
     "@_MESSAGES": "<-----------------MESSAGES----------------->"
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../shared/strings.dart';
 import 'tabs/cart_tab_view.dart';
+import 'tabs/components.dart/search_bar.dart';
 import 'tabs/home_tab_view.dart';
 import 'tabs/likes_tab_view.dart';
 import 'tabs/feeds_tab_view.dart';
@@ -68,12 +69,20 @@ class _LandingViewState extends State<LandingView> {
         key: _scaffoldkey,
         appBar: currentTab == 0
             ? AppBar(
-                key: const Key('landing_main_bar_key'),
-                title: const Text('Home'),
+                key: const Key('app_bar_key'),
+                toolbarHeight: 72,
+                title: const SearchTile(),
                 elevation: 0,
+                actions: [
+                  IconButton(
+                    key: const Key('app_bar_menu_key'),
+                    icon: const Icon(Iconsax.menu),
+                    onPressed: () {},
+                  ),
+                ],
               )
             : AppBar(
-                key: const Key('landing_main_bar_key'),
+                key: const Key('app_bar_key'),
                 title: Text(_navItems[currentTab]['label'] ?? ''),
               ),
         body: IndexedStack(
