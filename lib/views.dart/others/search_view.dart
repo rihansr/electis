@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../shared/strings.dart';
-import '../../widgets/base_widget.dart';
-import '../viewmodels/search_viewmodel.dart';
-import 'tabs/components.dart/product_item.dart';
+import '../../../shared/strings.dart';
+import '../../../widgets/base_widget.dart';
+import '../../viewmodels/search_viewmodel.dart';
+import '../tabs/components.dart/product_item.dart';
 
 class SearchProductsView extends StatelessWidget {
   const SearchProductsView({super.key});
@@ -21,7 +22,6 @@ class SearchProductsView extends StatelessWidget {
           slivers: [
             SliverAppBar(
               title: CupertinoSearchTextField(
-                
                 controller: controller.searchController,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.surface,
@@ -30,18 +30,17 @@ class SearchProductsView extends StatelessWidget {
                 autofocus: true,
                 placeholder: string.searchHint,
                 style: theme.textTheme.bodyMedium?.copyWith(height: 1),
-                prefixIcon: CircleAvatar(
-                  backgroundColor: theme.primaryColor,
-                  radius: 16,
-                  child: const Icon(
-                    Iconsax.search_normal_1,
+                prefixIcon: IconButton(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(
+                    Iconsax.arrow_left,
                     color: Colors.white,
                     size: 18,
                   ),
                 ),
                 suffixIcon: const Icon(Icons.close, size: 18),
                 suffixInsets: const EdgeInsets.all(8),
-                prefixInsets: const EdgeInsets.all(8),
+                prefixInsets: const EdgeInsets.all(0),
                 onSubmitted: (query) => controller.search(query),
               ),
               centerTitle: false,

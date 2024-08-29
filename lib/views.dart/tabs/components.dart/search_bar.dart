@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../shared/strings.dart';
-import '../../search_view.dart';
+import '../../others/search_view.dart';
 
 class SearchTile extends StatelessWidget {
   const SearchTile({super.key});

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class TitleBar extends StatelessWidget {
   final String title;
+  final String? actionLabel;
   final Function()? onAction;
   const TitleBar({
     super.key,
     required this.title,
+    this.actionLabel,
     this.onAction,
   });
 
@@ -24,7 +26,7 @@ class TitleBar extends StatelessWidget {
           foregroundColor: theme.hintColor,
           overlayColor: Colors.transparent,
         ),
-        child: const Text("Show all"),
+        child: Text(actionLabel ?? "Show all"),
       ),
     );
   }

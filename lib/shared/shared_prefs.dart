@@ -1,6 +1,8 @@
+import 'package:electis/shared/local_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/other/settings_model.dart';
+import '../models/user/user_model.dart';
 final sharedPrefs = SharedPrefs.value;
 
 class SharedPrefs {
@@ -11,7 +13,17 @@ class SharedPrefs {
 
   Future<void> init() async => _sharedPrefs = await SharedPreferences.getInstance();
 
+  static const String _userKey = "user_sp_key";
   static const String _settingsKey = "settings_sp_key";
+
+  // Users
+  set user(User user) =>
+      _sharedPrefs.setString(_userKey, user.toJson());
+
+  User get user {
+    final data = _sharedPrefs.getString(_userKey) ?? '';
+    return data.isEmpty ? local.user : User.fromJson(data);
+  }
 
   // Settings
   set settings(Settings settings) =>

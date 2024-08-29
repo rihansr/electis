@@ -93,29 +93,22 @@ class ProductDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  ChoiceChip(
-                    label: const Text('New'),
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-                    selected: controller.product.isNew,
-                  ),
-                  const SizedBox(width: 8),
-                  ChoiceChip(
-                    label: const Text('Top Deals'),
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-                    selected: controller.product.topDeals,
-                  ),
-                  const SizedBox(width: 8),
-                  ChoiceChip(
-                    label: const Text('Popular'),
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-                    selected: controller.product.isPopular,
-                  ),
-                ],
+            SizedBox(
+              height: 72,
+              child: ListViewBuilder.horizontal(
+                items: {
+                  'New': controller.product.isNew,
+                  'Top Deals': controller.product.topDeals,
+                  'Popular': controller.product.isPopular,
+                }.entries.toList(),
+                spacing: const EdgeInsets.all(16),
+                itemSpacing: 8,
+                builder: (item, index) => ChoiceChip(
+                  key: ValueKey(item.key),
+                  label: Text(item.key),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 12),
+                  selected: item.value,
+                ),
               ),
             ),
             ...controller.product.attributes.map((attribute) {

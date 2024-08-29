@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'address_model.dart';
 part 'user_model.g.dart';
@@ -96,6 +98,10 @@ class User {
       'addresses': List<dynamic>.from(addresses.map((x) => x.toMap())),
     };
   }
+  
+  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+
+  String toJson() => json.encode(toMap());
 
   @override
   bool operator ==(Object other) {

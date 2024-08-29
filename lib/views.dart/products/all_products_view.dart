@@ -6,7 +6,7 @@ import '../../models/category/category_model.dart';
 import '../../viewmodels/products_viewmodel.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/listview_builder.dart';
-import '../search_view.dart';
+import '../others/search_view.dart';
 import '../tabs/components.dart/product_item.dart';
 
 class AllProductsView extends StatelessWidget {

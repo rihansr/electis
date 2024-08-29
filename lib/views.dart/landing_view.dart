@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../shared/strings.dart';
+import 'others/addresses_view.dart';
 import 'tabs/cart_tab_view.dart';
 import 'tabs/components.dart/search_bar.dart';
 import 'tabs/home_tab_view.dart';
@@ -79,7 +80,15 @@ class _LandingViewState extends State<LandingView> {
                     child: IconButton(
                       key: const Key('app_bar_menu_key'),
                       icon: const Icon(Iconsax.menu_14),
-                      onPressed: () {},
+                      onPressed: () => showGeneralDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        barrierLabel: MaterialLocalizations.of(context)
+                            .modalBarrierDismissLabel,
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const AddressesView();
+                        },
+                      ),
                     ),
                   ),
                 ],
