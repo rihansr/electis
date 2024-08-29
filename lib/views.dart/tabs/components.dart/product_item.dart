@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../models/product/product_model.dart';
+import '../../../routing/routes.dart';
 import '../../../shared/colors.dart';
 import '../../../shared/strings.dart';
 import '../../../widgets/clipper_widget.dart';
@@ -20,7 +22,10 @@ class ProductItem extends StatelessWidget {
       fontSize: 11,
     );
     return InkWell(
-      onTap: () => {},
+      onTap: () => context.pushNamed(
+        Routes.product,
+        extra: {'product': item},
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,

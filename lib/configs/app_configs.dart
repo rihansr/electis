@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import '../models/product/attribute_model.dart';
+import '../models/product/attribute_option_model.dart';
 import '../models/user/address_model.dart';
 import '../models/cart/cart_item_model.dart';
 import '../models/cart/cart_model.dart';
@@ -46,6 +48,8 @@ class AppConfig {
       ..registerAdapter(AddressAdapter())
       ..registerAdapter(CartItemAdapter())
       ..registerAdapter(ProductAdapter())
+      ..registerAdapter(AttributeAdapter())
+      ..registerAdapter(AttributeOptionAdapter())
       ..registerAdapter(CategoryAdapter());
 
     await Hive.openBox<Cart>(kCartTable);

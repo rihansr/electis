@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../models/category/category_model.dart';
+import '../models/product/product_model.dart';
 import '../services/navigation_service.dart';
-import '../views.dart/all_products_view.dart';
+import '../views.dart/products/all_products_view.dart';
 import '../views.dart/landing_view.dart';
+import '../views.dart/products/product_view.dart';
 import 'routes.dart';
 
 final GoRouter router = GoRouter(
@@ -25,6 +27,16 @@ final GoRouter router = GoRouter(
         return AllProductsView(
           category: data?['category'] as Category?,
           tag: data?['tag'] as Category?,
+        );
+      },
+    ),
+    GoRoute(
+      name: Routes.product,
+      path: Routes.product,
+      builder: (BuildContext context, GoRouterState state) {
+        final data = state.extra as Map<String, dynamic>?;
+        return ProductDetailsView(
+          product: (data?['product'] as Product?) ?? const Product(),
         );
       },
     ),
