@@ -1,14 +1,17 @@
-import 'package:electis/shared/colors.dart';
-import 'package:electis/widgets/clipper_widget.dart';
+import 'package:collection/collection.dart';
+import 'package:electis/routing/routes.dart';
+import 'package:electis/shared/local_data.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../models/other/banner_model.dart' as slider;
 import '../../models/category/category_model.dart';
 import '../../models/product/product_model.dart';
-import '../../shared/strings.dart';
 import '../../viewmodels/home_viewmodel.dart';
 import '../../widgets/base_widget.dart';
+import '../../widgets/clipper_widget.dart';
 import '../../widgets/listview_builder.dart';
 import '../../widgets/slider_builder.dart';
+import 'components.dart/product_item.dart';
 import 'components.dart/title_bar.dart';
 
 class HomeTabView extends StatelessWidget {
@@ -18,7 +21,138 @@ class HomeTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<HomeViewModel>(
       model: HomeViewModel(),
-      builder: (context, controller, _) => ListView(
+      onInit: (controller) => controller.setProducts(),
+      builder: (context, controller, child) => CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            key: const ValueKey('categories'),
+            child: SizedBox(
+              height: 72,
+              child: ListViewBuilder<Category>.horizontal(
+                items: controller.categories,
+                itemSpacing: 8,
+                spacing: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                builder: (Category item, int index) => ChoiceChip(
+                  label: Text(item.name ?? ""),
+                  selected: item == controller.selectedCategory,
+                  onSelected: (selected) =>
+                      controller.selectedCategory = selected ? item : null,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            key: const ValueKey('banners'),
+            child: SliderBuilder<slider.Banner>(
+              aspectRatio: 2,
+              sliders: controller.banners,
+              itemBuilder: (banner) => Clipper(
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                backdrop: DecorationImage(
+                  image: AssetImage(banner.image ?? ""),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          SliverList.list(
+            key: const ValueKey('products'),
+            children: [
+              const SizedBox(height: 8),
+              if (controller.topDeals.isNotEmpty) ...[
+                TitleBar(
+                  title: 'Electis Choice',
+                  onAction: () => context.pushNamed(
+                    Routes.allProducts,
+                    extra: {
+                      'category': controller.selectedCategory,
+                      'tag': local.tags.firstWhereOrNull(
+                        (tag) => tag.slug == 'top_deals',
+                      ),
+                    },
+                  ),
+                ),
+                SizedBox(
+                  key: const ValueKey('electis_choice_products'),
+                  height: 196,
+                  child: ListViewBuilder<Product>.horizontal(
+                    items: controller.topDeals,
+                    itemSpacing: 8,
+                    spacing: const EdgeInsets.symmetric(horizontal: 16),
+                    builder: (Product item, int index) => SizedBox(
+                      key: ValueKey(index),
+                      width: 148,
+                      child: ProductItem(item),
+                    ),
+                  ),
+                ),
+              ],
+              if (controller.newArrivals.isNotEmpty) ...[
+                TitleBar(
+                  title: 'New Arrival',
+                  onAction: () => context.pushNamed(
+                    Routes.allProducts,
+                    extra: {
+                      'category': controller.selectedCategory,
+                      'tag': local.tags.firstWhereOrNull(
+                        (tag) => tag.slug == 'latest',
+                      ),
+                    },
+                  ),
+                ),
+                SizedBox(
+                  key: const ValueKey('new_arrival_products'),
+                  height: 196,
+                  child: ListViewBuilder<Product>.horizontal(
+                    items: controller.newArrivals,
+                    itemSpacing: 8,
+                    spacing: const EdgeInsets.symmetric(horizontal: 16),
+                    builder: (Product item, int index) => SizedBox(
+                      key: ValueKey(index),
+                      width: 148,
+                      child: ProductItem(item),
+                    ),
+                  ),
+                ),
+              ],
+              if (controller.popularProducts.isNotEmpty) ...[
+                TitleBar(
+                  title: 'Popular',
+                  onAction: () => context.pushNamed(
+                    Routes.allProducts,
+                    extra: {
+                      'category': controller.selectedCategory,
+                      'tag': local.tags.firstWhereOrNull(
+                        (tag) => tag.slug == 'popular',
+                      ),
+                    },
+                  ),
+                ),
+                SizedBox(
+                  key: const ValueKey('popular_products'),
+                  height: 196,
+                  child: ListViewBuilder<Product>.horizontal(
+                    items: controller.popularProducts,
+                    itemSpacing: 8,
+                    spacing: const EdgeInsets.symmetric(horizontal: 16),
+                    builder: (Product item, int index) => SizedBox(
+                      key: ValueKey(index),
+                      width: 148,
+                      child: ProductItem(item),
+                    ),
+                  ),
+                ),
+              ]
+            ],
+          ),
+        ],
+      ),
+
+      /* builder: (context, controller, _) => ListView(
         physics: const BouncingScrollPhysics(),
         children: [
           SizedBox(
@@ -103,111 +237,7 @@ class HomeTabView extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ProductItem extends StatelessWidget {
-  final Product item;
-  const ProductItem(
-    this.item, {
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final tagTextStyle = theme.textTheme.bodySmall?.copyWith(
-      color: ColorPalette.light().headline,
-      fontWeight: FontWeight.w600,
-      fontSize: 11,
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(
-          flex: 7,
-          child: Card(
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  top: 12,
-                  bottom: 12,
-                  child: Image.asset(
-                    item.image ?? "",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                if (item.isNew)
-                  Positioned(
-                    top: 8,
-                    left: 8,
-                    child: Clipper(
-                      shape: const StadiumBorder(),
-                      padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
-                      color: theme.colorScheme.secondary,
-                      child: Text(
-                        'New',
-                        style: tagTextStyle,
-                      ),
-                    ),
-                  ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: Clipper(
-                    shape: const StadiumBorder(),
-                    padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
-                    color: theme.colorScheme.tertiary,
-                    child: RichText(
-                      text: TextSpan(
-                        text: string.star,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: Colors.orange,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: item.rating.toStringAsFixed(1),
-                            style: tagTextStyle,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  item.name,
-                  style: theme.textTheme.bodySmall,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'RP ${item.price.toStringAsFixed(3)}',
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+      ), */
     );
   }
 }

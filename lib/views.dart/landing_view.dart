@@ -74,10 +74,13 @@ class _LandingViewState extends State<LandingView> {
                 title: const SearchTile(),
                 elevation: 0,
                 actions: [
-                  IconButton(
-                    key: const Key('app_bar_menu_key'),
-                    icon: const Icon(Iconsax.menu),
-                    onPressed: () {},
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: IconButton(
+                      key: const Key('app_bar_menu_key'),
+                      icon: const Icon(Iconsax.menu_14),
+                      onPressed: () {},
+                    ),
                   ),
                 ],
               )

@@ -60,8 +60,8 @@ class _SliderBuilderState<T> extends State<SliderBuilder<T>> {
                 autoPlayAnimationDuration: const Duration(seconds: 1),
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index, reason) {
+                  pageController = PageController(initialPage: index);
                   setState(() => pageIndex = index);
-                  //pageController.jumpToPage(index);
                 },
               ),
               itemBuilder: (BuildContext context, int index, int realIndex) =>

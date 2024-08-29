@@ -58,7 +58,7 @@ ThemeData theming(ThemeMode mode) {
       elevation: 1,
       centerTitle: true,
       iconTheme: IconThemeData(color: colorPalette.icon),
-      actionsIconTheme: IconThemeData(color: colorPalette.subtitle),
+      actionsIconTheme: IconThemeData(color: colorPalette.icon),
       titleTextStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,

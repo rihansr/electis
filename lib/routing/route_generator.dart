@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../models/category/category_model.dart';
 import '../services/navigation_service.dart';
+import '../views.dart/all_products_view.dart';
 import '../views.dart/landing_view.dart';
 import 'routes.dart';
 
@@ -15,22 +17,17 @@ final GoRouter router = GoRouter(
         return const LandingView();
       },
     ),
-   /*  GoRoute(
-      name: Routes.messages,
-      path: '/${Routes.messages}/:gourp_chat_id',
+    GoRoute(
+      name: Routes.allProducts,
+      path: Routes.allProducts,
       builder: (BuildContext context, GoRouterState state) {
-        String? id = state.pathParameters['gourp_chat_id'];
-        return id == null ? const SizedBox() : ChatView(groupChatId: id);
+        final data = state.extra as Map<String, dynamic>?;
+        return AllProductsView(
+          category: data?['category'] as Category?,
+          tag: data?['tag'] as Category?,
+        );
       },
     ),
-    GoRoute(
-      name: Routes.profile,
-      path: '/:username',
-      builder: (BuildContext context, GoRouterState state) {
-        String? uid = state.pathParameters['username'];
-        return uid == null ? const SizedBox() : ProfileView(username: uid);
-      },
-    ), */
   ],
   errorBuilder: (context, state) => const Scaffold(
     body: Center(
