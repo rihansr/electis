@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../shared/strings.dart';
+import '../../search_view.dart';
 
 class SearchTile extends StatelessWidget {
   const SearchTile({super.key});
@@ -9,6 +11,10 @@ class SearchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ListTile(
+      onTap: () => showCupertinoModalPopup(
+        context: context,
+        builder: (context) => const SearchProductsView(),
+      ),
       dense: true,
       shape: const StadiumBorder(),
       tileColor: theme.disabledColor,
@@ -26,7 +32,7 @@ class SearchTile extends StatelessWidget {
           size: 18,
         ),
       ),
-      title: Text(string.searchTitle),
+      title: Text(string.searchHint),
       subtitle: Text(string.searchSubtitle),
     );
   }

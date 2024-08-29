@@ -1,7 +1,6 @@
 {
     "@@locale": "en",
     "@_TITLES": "<-----------------TITLES----------------->",
-    "searchTitle": "Search on Electis",
     "@_SUBTITLES": "<-----------------SUBTITLES----------------->",
     "searchSubtitle": "Electronics \u2022 Shoes \u2022 Anything",
     "@_LABELS": "<-----------------LABELS----------------->",
@@ -15,6 +14,7 @@
     "bullet": "\u2022",
     "star": "\u2605",
     "@_HINTS": "<-----------------HINTS----------------->",
+    "searchHint": "Search on Electis",
     "@_MESSAGES": "<-----------------MESSAGES----------------->"
   }
   

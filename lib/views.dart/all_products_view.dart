@@ -1,10 +1,12 @@
-import 'package:electis/widgets/listview_builder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import '../models/category/category_model.dart';
 import '../viewmodels/products_viewmodel.dart';
 import '../widgets/base_widget.dart';
+import '../widgets/listview_builder.dart';
+import 'search_view.dart';
 import 'tabs/components.dart/product_item.dart';
 
 class AllProductsView extends StatelessWidget {
@@ -31,7 +33,10 @@ class AllProductsView extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () => showCupertinoModalPopup(
+                context: context,
+                builder: (context) => const SearchProductsView(),
+              ),
               icon: const Icon(Iconsax.search_normal_1),
             ),
           ],
