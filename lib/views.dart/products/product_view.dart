@@ -3,8 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../shared/extensions.dart';
 import '../../models/product/product_model.dart';
-import '../../viewmodels/base_viewmodel.dart';
-import '../../viewmodels/cart_viewmodel.dart';
 import '../../viewmodels/product_viewmodel.dart';
 import '../../shared/strings.dart';
 import '../../widgets/badge_widget.dart';
@@ -42,8 +40,7 @@ class ProductDetailsView extends StatelessWidget {
                 onPressed: () => popupCart(context),
                 padding: EdgeInsets.zero,
                 icon: Badges.count(
-                  count: provider<CartViewModel>(context: context, listen: true)
-                      .totalItems,
+                  count: controller.cartItems,
                   child: const Icon(Iconsax.shopping_cart),
                 ),
               ),
@@ -63,7 +60,7 @@ class ProductDetailsView extends StatelessWidget {
                     radius: 16,
                     alignment: Alignment.center,
                     child: Hero(
-                      tag: '${tag}_{icon}',
+                      tag: '${tag}_icon',
                       child: Image.asset(
                         controller.product.image ?? '',
                         height: 192,
@@ -85,6 +82,21 @@ class ProductDetailsView extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: (() {
+                      bool isFavorite = controller.isFavourite;
+                      return IconButton(
+                        onPressed: () => controller.markAsFavourite(),
+                        icon: Icon(
+                          isFavorite ? Iconsax.heart5 : Iconsax.heart,
+                          size: 20,
+                          color: isFavorite ? Colors.redAccent : null,
+                        ),
+                      );
+                    }()),
                   ),
                 ],
               ),

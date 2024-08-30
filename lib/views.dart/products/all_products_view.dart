@@ -91,7 +91,7 @@ class AllProductsView extends StatelessWidget {
                     final product = controller.filterdProducts[index];
                     return ProductItem(
                       item: product,
-                      tag: 'all_products_${product.id}',
+                      tag: 'category_${product.id}',
                     );
                   },
                   childCount: controller.filterdProducts.length,

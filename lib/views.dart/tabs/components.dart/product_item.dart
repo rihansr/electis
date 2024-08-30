@@ -41,7 +41,7 @@ class ProductItem extends StatelessWidget {
                     top: 12,
                     bottom: 12,
                     child: Hero(
-                      tag: '${tag}_{icon}',
+                      tag: '${tag}_icon',
                       child: Image.asset(
                         item.image ?? "",
                         fit: BoxFit.contain,

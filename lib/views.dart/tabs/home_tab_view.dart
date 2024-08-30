@@ -88,7 +88,7 @@ class HomeTabView extends StatelessWidget {
                       width: 148,
                       child: ProductItem(
                         item: item,
-                        tag: 'electis_choice_products_${item.id}',
+                        tag: 'electis_choice_${item.id}',
                       ),
                     ),
                   ),
@@ -119,7 +119,7 @@ class HomeTabView extends StatelessWidget {
                       width: 148,
                       child: ProductItem(
                         item: item,
-                        tag: 'new_arrival_products_${item.id}',
+                        tag: 'new_arrival_${item.id}',
                       ),
                     ),
                   ),
@@ -150,7 +150,7 @@ class HomeTabView extends StatelessWidget {
                       width: 148,
                       child: ProductItem(
                         item: item,
-                        tag: 'popular_products_${item.id}',
+                        tag: 'popular_${item.id}',
                       ),
                     ),
                   ),

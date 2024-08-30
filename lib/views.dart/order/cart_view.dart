@@ -24,7 +24,9 @@ popupCart([BuildContext? context]) {
       maxHeight: MediaQuery.of(context).size.height * 0.7,
     ),
     isScrollControlled: true,
-    builder: (context) => const _CartView(),
+    builder: (context) => const _CartView(
+      key: Key('cart'),
+    ),
   );
 }
 
@@ -62,7 +64,7 @@ class _CartView extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(48),
+              padding: const EdgeInsets.all(64),
               child: Lottie.asset(drawable.emptyCart),
             ),
             ListViewBuilder.vertical(

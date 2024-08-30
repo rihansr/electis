@@ -45,5 +45,6 @@ class AppConfig {
       ..registerAdapter(CategoryAdapter());
 
     await Hive.openBox<CartItem>(kCartTable);
+    await Hive.openBox<Product>(kFavouritesTable);
   }
 }
