@@ -40,7 +40,7 @@ class BaseViewModel extends ChangeNotifier {
       busy;
 
   /// Notifies listeners of changes in the viewmodel.
-  void notify() => notifyListeners();
+   get notify => notifyListeners();
 
   @override
   void dispose() {
