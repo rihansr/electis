@@ -16,27 +16,11 @@ class ProductsViewModel extends BaseViewModel {
       : _category = category,
         _tag = tag;
 
-  List<Product> _products = const [];
-  List<Product> filterdProducts = const [];
-
-  List<Category> tags = local.tags;
-  List<AttributeOption> sortOptions = local.sortBy;
-
-  AttributeOption? _sortBy;
-  AttributeOption? get sortBy => _sortBy;
-  set sortBy(AttributeOption? by) => this
-    .._sortBy = by
-    .._sort()
-    ..notifyListeners();
-
-  Category? get tag => _tag;
-  set tag(Category? tag) => this
-    .._tag = tag
-    .._filter()
-    .._sort()
-    ..notifyListeners();
-
-  init() {
+  /// Initialize the view model.
+  ///
+  /// This method retrieves the list of products based on the category,
+  /// and applies the initial filtering.
+  void init() {
     _products = _category == null
         ? local.products
         : local.products
@@ -45,7 +29,36 @@ class ProductsViewModel extends BaseViewModel {
     _filter();
   }
 
-  _filter() {
+  List<Product> _products = const [];
+  List<Product> filterdProducts = const [];
+
+  List<Category> tags = local.tags;
+  List<AttributeOption> sortOptions = local.sortBy;
+
+  /// The currently selected sort option.
+  AttributeOption? _sortBy;
+
+  /// Get the currently selected sort option.
+  AttributeOption? get sortBy => _sortBy;
+
+  /// Set the currently selected sort option and update the filtered products list.
+  set sortBy(AttributeOption? by) => this
+    .._sortBy = by
+    .._sort()
+    ..notifyListeners();
+
+  /// Get the currently selected tag.
+  Category? get tag => _tag;
+
+  /// Set the currently selected tag and update the filtered products list.
+  set tag(Category? tag) => this
+    .._tag = tag
+    .._filter()
+    .._sort()
+    ..notifyListeners();
+
+  /// Apply the tag filter to the products list.
+  void _filter() {
     filterdProducts = _tag == null
         ? _products
         : _products.where((product) {
@@ -62,7 +75,8 @@ class ProductsViewModel extends BaseViewModel {
           }).toList();
   }
 
-  popupSortOptions() => showCupertinoModalPopup(
+  /// Show a popup with the available sort options.
+  void popupSortOptions() => showCupertinoModalPopup(
       context: context,
       builder: (context) => CupertinoActionSheet(
             title: const Text('Sort by'),
@@ -91,7 +105,8 @@ class ProductsViewModel extends BaseViewModel {
             ),
           ));
 
-  _sort() {
+  /// Apply the sort option to the filtered products list.
+  void _sort() {
     switch (_sortBy?.slug) {
       case 'price_high_to_low':
         filterdProducts.sort((a, b) => a.price.compareTo(b.price));

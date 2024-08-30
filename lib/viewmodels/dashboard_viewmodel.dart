@@ -8,6 +8,7 @@ class DashboardViewModel extends BaseViewModel {
 
   DashboardViewModel() : scaffoldkey = GlobalKey<ScaffoldState>();
 
+  // List of navigation items
   List<Map<String, dynamic>> get navItems => [
         {
           'tag': 'home',
@@ -41,9 +42,13 @@ class DashboardViewModel extends BaseViewModel {
         },
       ];
 
+  // Getter for the current navigation item
   Map<String, dynamic> get currentNavItem => navItems[currentTab];
 
+  // Private variable for the current tab
   int _currentTab = 0;
+
+  // Getter and setter for the current tab
   int get currentTab => _currentTab;
   set currentTab(int tab) => this
     .._currentTab = tab

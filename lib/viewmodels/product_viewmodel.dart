@@ -15,6 +15,7 @@ class ProductViewModel extends BaseViewModel {
   ProductViewModel(this.context, this.product);
 
   Map<Attribute, List<AttributeOption>> selectedOptions = {};
+
   set selectedOption(MapEntry<Attribute, List<AttributeOption>> value) {
     selectedOptions[value.key] = value.value;
     notifyListeners();
@@ -23,15 +24,21 @@ class ProductViewModel extends BaseViewModel {
   int get cartItems =>
       provider<CartViewModel>(context: context, listen: true).totalItems;
 
+  // Function to add the product to the cart
   addToCart() {
+    // Extract all the selected options into a list
     List<AttributeOption> options =
         selectedOptions.values.expand((element) => element).toList();
+
+    // Create a new cart item with the product, options, and quantity
     final cartItem = CartItem(
       id: extension.uuid,
       product: product,
       options: options,
       quantity: 1,
     );
+
+    // Add the cart item to the cart
     provider<CartViewModel>(context: context).addToCart(cartItem);
   }
 
@@ -39,6 +46,7 @@ class ProductViewModel extends BaseViewModel {
       provider<FavouritesViewModel>(context: context, listen: true)
           .isFavourite(product);
 
+  // Function to mark the product as favourite
   markAsFavourite() =>
       provider<FavouritesViewModel>(context: context).toogleFavourite(product);
 }

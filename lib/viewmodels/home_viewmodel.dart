@@ -5,17 +5,21 @@ import '../shared/local_data.dart';
 import 'base_viewmodel.dart';
 
 class HomeViewModel extends BaseViewModel {
-  HomeViewModel();
-
   List<Category> categories = local.categories;
+
   List<slider.Banner> banners = local.banners;
+
   List<Product> products = local.products;
 
   List<Product> newArrivals = const [];
+
   List<Product> topDeals = const [];
+
   List<Product> popularProducts = const [];
 
-  setProducts() {
+  /// Sets the new arrivals, top deals, and popular products based on the
+  /// products list.
+  void setProducts() {
     List<Product> newArrivals = [];
     List<Product> topDeals = [];
     List<Product> popularProducts = [];

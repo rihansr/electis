@@ -9,8 +9,15 @@ T provider<T>({listen = false, BuildContext? context}) =>
 class BaseViewModel extends ChangeNotifier {
   final HashMap<String, bool> _loading = HashMap();
   bool _busy = false;
+
+  /// Indicates whether the viewmodel is currently busy.
   bool get busy => _busy;
 
+  /// Sets the busy status of the view model.
+  ///
+  /// The [status] parameter indicates whether the view model is busy or not.
+  /// The [key] parameter is an optional identifier for the loading status.
+  /// The [afterBinding] parameter indicates whether to notify listeners after the next frame is rendered.
   void setBusy(bool status, {String? key, bool afterBinding = false}) {
     _busy = status;
     if (key != null) _loading[key] = status;
@@ -23,32 +30,17 @@ class BaseViewModel extends ChangeNotifier {
     }
   }
 
+  /// Checks if the view model is currently loading.
+  ///
+  /// The [key] parameter is an optional identifier for the loading status.
+  /// The [orElse] parameter is an optional default value to return if the loading status is not found.
+  /// Returns `true` if the view model is loading, otherwise returns the value of [orElse].
   bool isLoading({String? key, bool? orElse}) =>
       (key != null && _loading.containsKey(key) ? _loading[key] : orElse) ??
       busy;
 
-  Map<String, String> _errorLog = {};
-  Map<String, String> get errorLog => _errorLog;
-  get clearErrorLog => errorLog = {};
-  set errorLog(Map<String, String> log) => this
-    .._errorLog = log
-    ..enabledAutoValidate = true
-    ..notifyListeners();
-
-  bool enabledAutoValidate = false;
-  bool validate(GlobalKey<FormState> formKey,
-      {autoValidate = true, orElse = true}) {
-    bool validated =
-        _errorLog.isNotEmpty || (formKey.currentState?.validate() ?? orElse);
-    if (autoValidate) {
-      this
-        ..enabledAutoValidate = !validated
-        ..notifyListeners();
-    }
-    return validated;
-  }
-
-  get notify => notifyListeners();
+  /// Notifies listeners of changes in the viewmodel.
+  void notify() => notifyListeners();
 
   @override
   void dispose() {
