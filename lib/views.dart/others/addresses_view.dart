@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
+import '../../shared/strings.dart';
 import '../../viewmodels/account_viewmodel.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/listview_builder.dart';
@@ -34,18 +35,18 @@ class AddressesView extends StatelessWidget {
               Row(
                 children: [
                   const SizedBox(width: 16),
-                  const Expanded(
+                  Expanded(
                     child: _ChipItem(
-                      key: Key('balance_chip_key'),
-                      title: 'BALANCE',
-                      subtitle: 'RP 2500.000',
+                      key: const Key('balance_chip_key'),
+                      title: string.balance,
+                      subtitle: string.price(2500.0),
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Expanded(
+                  Expanded(
                     child: _ChipItem(
-                      key: Key('member_chip_key'),
-                      title: 'MEMBER',
+                      key: const Key('member_chip_key'),
+                      title: string.member,
                       subtitle: 'Platinum',
                       trailing: Iconsax.cup,
                     ),
@@ -57,9 +58,9 @@ class AddressesView extends StatelessWidget {
                   const SizedBox(width: 8),
                 ],
               ),
-              const TitleBar(
-                title: 'Delivery Location',
-                actionLabel: 'Manage',
+              TitleBar(
+                title: string.deliveryLocation,
+                actionLabel: string.manage,
               ),
               Card(
                 margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -126,8 +127,8 @@ class _ChipItem extends StatelessWidget {
       ),
       trailing: trailing != null
           ? Align(
-              widthFactor: 0,
-              alignment: Alignment.bottomRight,
+              widthFactor: 0.3,
+              alignment: Alignment.bottomCenter,
               child: Icon(
                 trailing,
                 size: 16,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../models/cart/cart_item_model.dart';
+import '../../../shared/strings.dart';
 import '../../../widgets/clipper_widget.dart';
 import '../../products/components/color_item.dart';
 import '../../../shared/extensions.dart';
@@ -49,7 +50,7 @@ class CartItemView extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'RP ${item.product.price.toStringAsFixed(3)}',
+                    string.price(item.product.price),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       height: 1,

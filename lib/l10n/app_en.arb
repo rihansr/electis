@@ -1,20 +1,63 @@
 {
-    "@@locale": "en",
-    "@_TITLES": "<-----------------TITLES----------------->",
-    "@_SUBTITLES": "<-----------------SUBTITLES----------------->",
-    "searchSubtitle": "Electronics \u2022 Shoes \u2022 Anything",
-    "@_LABELS": "<-----------------LABELS----------------->",
-    "home": "Home",
-    "feeds": "Feeds",
-    "likes": "Likes",
-    "cart": "Cart",
-    "profile": "Profile",
-    "okay": "Okay",
-    "retry": "Retry",
-    "bullet": "\u2022",
-    "star": "\u2605",
-    "@_HINTS": "<-----------------HINTS----------------->",
-    "searchHint": "Search on Electis",
-    "@_MESSAGES": "<-----------------MESSAGES----------------->"
-  }
-  
+  "@@locale": "en",
+  "@_TITLES": "<-----------------TITLES----------------->",
+  "shopCart": "Shop Cart",
+  "home": "Home",
+  "feeds": "Feeds",
+  "likes": "Likes",
+  "cart": "Cart",
+  "searchTitle": "Search on Electis",
+  "@_SUBTITLES": "<-----------------SUBTITLES----------------->",
+  "searchSubtitle": "Electronics \u2022 Shoes \u2022 Anything",
+  "@_LABELS": "<-----------------LABELS----------------->",
+  "profile": "Profile",
+  "latest": "Latest",
+  "electicsChoice": "Electis Choice",
+  "newArrival": "New Arrival",
+  "topDeals": "Top Deals",
+  "popular": "Popular",
+  "showAll": "Show all",
+  "balance": "Balance",
+  "member": "Member",
+  "deliveryLocation": "Delivery Location",
+  "manage": "Manage",
+  "isNew": "New",
+  "language": "Language",
+  "thememode": "Theme Mode",
+  "addToCart": "Add to Cart",
+  "checkout": "Checkout{count,plural, =0{} other{ ({count})}}",
+  "@checkout": {
+    "description": "Items count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "price": "{amount}",
+  "@price": {
+    "placeholders": {
+      "amount": {
+        "type": "num",
+        "format": "currency",
+        "example": "100.000",
+        "description": "Product price",
+        "optionalParameters": {
+          "decimalDigits": 3,
+          "name": "USD",
+          "symbol": "$",
+          "customPattern": "¤#0.000"
+        }
+      }
+    }
+  },
+  "okay": "Okay",
+  "retry": "Retry",
+  "bullet": "\u2022",
+  "star": "\u2605",
+  "@_MESSAGES": "<-----------------MESSAGES----------------->",
+  "addedToCart": "Added to cart",
+  "removedFromCart": "Removed from cart",
+  "savedAsFavorite": "Saved as favorite",
+  "removedFromFavorite": "Removed from favorite"
+}

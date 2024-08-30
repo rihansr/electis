@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../shared/strings.dart';
 
 class TitleBar extends StatelessWidget {
   final String title;
@@ -19,14 +20,13 @@ class TitleBar extends StatelessWidget {
       titleTextStyle: theme.textTheme.bodyLarge?.copyWith(
         fontWeight: FontWeight.w500,
       ),
-      contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
       trailing: TextButton(
         onPressed: onAction,
         style: TextButton.styleFrom(
           foregroundColor: theme.hintColor,
           overlayColor: Colors.transparent,
         ),
-        child: Text(actionLabel ?? "Show all"),
+        child: Text(actionLabel ?? string.showAll),
       ),
     );
   }

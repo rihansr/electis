@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../services/navigation_service.dart';
 import '../../shared/drawables.dart';
+import '../../shared/strings.dart';
 import '../../viewmodels/cart_viewmodel.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/button_widget.dart';
@@ -43,7 +44,7 @@ class _CartView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text('Shop Cart'),
+          title:  Text(string.shopCart),
           titleTextStyle: theme.textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.w600,
           ),
@@ -80,7 +81,7 @@ class _CartView extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Button(
-          label: 'Checkout (${controller.totalItems})',
+          label: string.checkout(controller.totalItems),
           margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
         ),
       ),

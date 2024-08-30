@@ -76,7 +76,7 @@ class ProductDetailsView extends StatelessWidget {
                       color: theme.colorScheme.primary,
                       padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
                       child: Text(
-                        'RP ${controller.product.price.toStringAsFixed(3)}',
+                        string.price(controller.product.price),
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: Colors.white,
                         ),
@@ -186,7 +186,10 @@ class ProductDetailsView extends StatelessWidget {
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: Colors.white,
           icon: const Icon(Iconsax.shopping_cart, size: 18),
-          label: const Text('Add to Cart', style: TextStyle(height: 1)),
+          label: Text(
+            string.addToCart,
+            style: const TextStyle(height: 1),
+          ),
         ),
       ),
     );

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import '../shared/strings.dart';
+import 'package:provider/provider.dart';
+import '../viewmodels/base_viewmodel.dart';
+import '../viewmodels/cart_viewmodel.dart';
+import '../viewmodels/dashboard_viewmodel.dart';
+import '../widgets/badge_widget.dart';
+import '../widgets/base_widget.dart';
 import 'others/addresses_view.dart';
 import 'order/cart_view.dart';
 import 'tabs/components.dart/search_bar.dart';
@@ -9,66 +14,16 @@ import 'tabs/likes_tab_view.dart';
 import 'tabs/feeds_tab_view.dart';
 import 'tabs/profile_tab_view.dart';
 
-class LandingView extends StatefulWidget {
+class LandingView extends StatelessWidget {
   const LandingView({super.key});
 
   @override
-  State<LandingView> createState() => _LandingViewState();
-}
-
-class _LandingViewState extends State<LandingView> {
-  late GlobalKey<ScaffoldState> _scaffoldkey;
-  List<Map<String, dynamic>> _navItems = const [];
-  late ValueNotifier<int> _currentTabNotifier;
-
-  @override
-  void initState() {
-    _scaffoldkey = GlobalKey<ScaffoldState>();
-    _navItems = [
-      {
-        'icon': Iconsax.home_1,
-        'icon_fill': Iconsax.home5,
-        'label': string.home,
-      },
-      {
-        'icon': Iconsax.lamp_on,
-        'icon_fill': Iconsax.lamp_charge,
-        'label': string.feeds,
-      },
-      {
-        'icon': Iconsax.heart4,
-        'icon_fill': Iconsax.heart5,
-        'label': string.likes,
-      },
-      {
-        'icon': Iconsax.shopping_cart,
-        'icon_fill': Iconsax.shopping_cart5,
-        'label': string.cart,
-      },
-      {
-        'icon': Iconsax.user,
-        'icon_fill': Iconsax.user,
-        'label': string.profile,
-      },
-    ];
-    _currentTabNotifier = ValueNotifier<int>(0);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _currentTabNotifier.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      key: const Key('landing_body_key'),
-      valueListenable: _currentTabNotifier,
-      builder: (_, currentTab, __) => Scaffold(
-        key: _scaffoldkey,
-        appBar: currentTab == 0
+    return BaseWidget<DashboardViewModel>(
+      model: Provider.of<DashboardViewModel>(context),
+      builder: (context, controller, child) => Scaffold(
+        key: controller.scaffoldkey,
+        appBar: controller.currentTab == 0
             ? AppBar(
                 key: const Key('app_bar_key'),
                 toolbarHeight: 72,
@@ -95,11 +50,11 @@ class _LandingViewState extends State<LandingView> {
               )
             : AppBar(
                 key: const Key('app_bar_key'),
-                title: Text(_navItems[currentTab]['label'] ?? ''),
+                title: Text(controller.currentNavItem['label'] ?? ''),
               ),
         body: IndexedStack(
           key: const Key('landing_main_body_key'),
-          index: currentTab,
+          index: controller.currentTab,
           children: const [
             HomeTabView(key: PageStorageKey('home_tab_page_key')),
             FeedsTabView(key: PageStorageKey('feeds_tab_page_key')),
@@ -110,19 +65,26 @@ class _LandingViewState extends State<LandingView> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           key: const Key('landing_main_bottom_nav_bar_key'),
-          currentIndex: currentTab,
+          currentIndex: controller.currentTab,
           onTap: (index) {
             if (index == 3) {
               popupCart(context);
             } else {
-              _currentTabNotifier.value = index;
+              controller.currentTab = index;
             }
           },
-          items: _navItems
+          items: controller.navItems
               .map(
                 (e) => BottomNavigationBarItem(
                   key: Key(e['label'] as String),
-                  icon: Icon(e['icon'] as IconData),
+                  icon: e['tag'] == 'cart'
+                      ? Badges.count(
+                          count: provider<CartViewModel>(
+                                  context: context, listen: true)
+                              .totalItems,
+                          child: Icon(e['icon'] as IconData?),
+                        )
+                      : Icon(e['icon'] as IconData?),
                   activeIcon: Icon(e['icon_fill'] as IconData?),
                   label: e['label'] as String,
                   tooltip: e['label'] as String,

@@ -11,7 +11,6 @@ class Badges extends StatelessWidget {
       count: count,
       backgroundColor: Theme.of(context).colorScheme.primary,
       textColor: Colors.white,
-      offset: const Offset(6, -6),
       isLabelVisible: count > 0,
       child: child,
     );

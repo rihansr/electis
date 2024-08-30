@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../shared/drawables.dart';
 
 class FeedsTabView extends StatelessWidget {

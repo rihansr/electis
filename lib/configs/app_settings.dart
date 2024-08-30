@@ -24,10 +24,8 @@ class AppSettings {
   ThemeMode get theme => settings.value.themeMode;
 
   // Locale
-  set language(dynamic locale) {
-    if (locale == null) return;
-    _settings = settings.value.copyWith(
-      locale: locale is Locale ? locale : Locale('$locale', ''),
-    );
-  }
+  set language(Locale locale) =>
+      _settings = settings.value.copyWith(locale: locale);
+
+  Locale get language => settings.value.locale;
 }

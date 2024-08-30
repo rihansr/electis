@@ -1,7 +1,7 @@
-import 'package:electis/shared/local_data.dart';
 import '../models/other/banner_model.dart' as slider;
 import '../models/category/category_model.dart';
 import '../models/product/product_model.dart';
+import '../shared/local_data.dart';
 import 'base_viewmodel.dart';
 
 class HomeViewModel extends BaseViewModel {

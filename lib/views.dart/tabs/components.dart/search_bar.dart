@@ -32,7 +32,7 @@ class SearchTile extends StatelessWidget {
           size: 18,
         ),
       ),
-      title: Text(string.searchHint),
+      title: Text(string.searchTitle),
       subtitle: Text(string.searchSubtitle),
     );
   }

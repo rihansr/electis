@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../models/product/product_model.dart';
+import '../../../shared/strings.dart';
 import '../../../widgets/clipper_widget.dart';
 
 class FavouriteItem extends StatelessWidget {
@@ -51,7 +52,7 @@ class FavouriteItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'RP ${item.price.toStringAsFixed(3)}',
+                    string.price(item.price),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       height: 1,

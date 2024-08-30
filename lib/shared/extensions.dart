@@ -9,6 +9,11 @@ class Extension {
   int get uuid => DateTime.now().millisecondsSinceEpoch;
 }
 
+extension StrinExtension on String {
+  String get firstLetter => isNotEmpty ? this[0] : '';
+  String get capitalize => isNotEmpty ? '${this[0].toUpperCase()}${substring(1)}' : '';
+}
+
 extension HexColor on Color {
   String get toHex => '#'
       '${alpha.toRadixString(16).padLeft(2, '0')}'

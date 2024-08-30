@@ -2,6 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import '../viewmodels/account_viewmodel.dart';
 import '../viewmodels/cart_viewmodel.dart';
+import '../viewmodels/dashboard_viewmodel.dart';
 import '../viewmodels/favourites_viewmodel.dart';
 
 List<SingleChildWidget> providers = [
@@ -12,6 +13,9 @@ List<SingleChildWidget> providers = [
 List<SingleChildWidget> independentService = [];
 
 List<SingleChildWidget> universalService = [
+   ChangeNotifierProvider<DashboardViewModel>(
+    create: (context) => DashboardViewModel(),
+  ),
   ChangeNotifierProvider<AccountViewModel>(
     create: (context) => AccountViewModel(),
   ),

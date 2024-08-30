@@ -1,0 +1,63 @@
+{
+  "@@locale": "ar",
+  "@_TITLES": "<-----------------TITLES----------------->",
+  "shopCart": "عربة التسوق",
+  "home": "بيت",
+  "feeds": "يغذي",
+  "likes": "يحب",
+  "cart": "عربة",
+  "profile": "الملف الشخصي",
+  "searchTitle": "البحث في إلكتيس",
+  "@_SUBTITLES": "<-----------------SUBTITLES----------------->",
+  "searchSubtitle": "الإلكترونيات \u2022 الأحذية \u2022 أي شيء",
+  "@_LABELS": "<-----------------LABELS----------------->",
+  "latest": "آخر الأخبار",
+  "electicsChoice": "اختيار إلكتيس",
+  "newArrival": "وصول جديد",
+  "topDeals": "أفضل الصفقات",
+  "popular": "شهير",
+  "showAll": "عرض الكل",
+  "balance": "الرصيد",
+  "member": "عضو",
+  "deliveryLocation": "موقع التوصيل",
+  "manage": "إدارة",
+  "isNew": "جديد",
+  "language": "اللغة",
+  "thememode": "وضع السمة",
+  "addToCart": "أضف إلى السلة",
+  "checkout": "الدفع{count,plural, =0{} other{ ({count})}}",
+  "@checkout": {
+    "description": "Check out items count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "price": "{amount}",
+  "@price": {
+    "placeholders": {
+      "amount": {
+        "type": "num",
+        "format": "currency",
+        "example": "100.000",
+        "description": "Product price",
+        "optionalParameters": {
+          "decimalDigits": 3,
+          "name": "AED",
+          "symbol": "د.إ",
+          "customPattern": "¤ #0.000"
+        }
+      }
+    }
+  },
+  "okay": "حسنًا",
+  "retry": "إعادة المحاولة",
+  "bullet": "\u2022",
+  "star": "\u2605",
+  "@_MESSAGES": "<-----------------MESSAGES----------------->",
+  "addedToCart": "تمت الإضافة إلى السلة",
+  "removedFromCart": "تمت الإزالة من السلة",
+  "savedAsFavorite": "تم الحفظ كمفضل",
+  "removedFromFavorite": "تمت الإزالة من المفضلة"
+}

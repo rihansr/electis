@@ -21,6 +21,7 @@ class ProductItem extends StatelessWidget {
     final tagTextStyle = theme.textTheme.bodySmall?.copyWith(
       color: ColorPalette.light().headline,
       fontWeight: FontWeight.w600,
+      height: 1,
       fontSize: 11,
     );
     return InkWell(
@@ -57,7 +58,7 @@ class ProductItem extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
                         color: theme.colorScheme.secondary,
                         child: Text(
-                          'New',
+                          string.isNew,
                           style: tagTextStyle,
                         ),
                       ),
@@ -103,13 +104,9 @@ class ProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'RP ${item.price.toStringAsFixed(3)}',
-                      style: theme.textTheme.bodyMedium,
-                    ),
+                  Text(
+                    string.price(item.price),
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ],
               ),

@@ -6,6 +6,7 @@ import '../../models/category/category_model.dart';
 import '../../models/product/product_model.dart';
 import '../../routing/routes.dart';
 import '../../shared/local_data.dart';
+import '../../shared/strings.dart';
 import '../../viewmodels/home_viewmodel.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/clipper_widget.dart';
@@ -65,7 +66,7 @@ class HomeTabView extends StatelessWidget {
               const SizedBox(height: 8),
               if (controller.topDeals.isNotEmpty) ...[
                 TitleBar(
-                  title: 'Electis Choice',
+                  title: string.electicsChoice,
                   onAction: () => context.pushNamed(
                     Routes.allProducts,
                     extra: {
@@ -96,7 +97,7 @@ class HomeTabView extends StatelessWidget {
               ],
               if (controller.newArrivals.isNotEmpty) ...[
                 TitleBar(
-                  title: 'New Arrival',
+                  title: string.newArrival,
                   onAction: () => context.pushNamed(
                     Routes.allProducts,
                     extra: {
@@ -127,7 +128,7 @@ class HomeTabView extends StatelessWidget {
               ],
               if (controller.popularProducts.isNotEmpty) ...[
                 TitleBar(
-                  title: 'Popular',
+                  title: string.popular,
                   onAction: () => context.pushNamed(
                     Routes.allProducts,
                     extra: {
@@ -160,93 +161,6 @@ class HomeTabView extends StatelessWidget {
           ),
         ],
       ),
-
-      /* builder: (context, controller, _) => ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          SizedBox(
-            height: 72,
-            child: ListViewBuilder<Category>.horizontal(
-              items: controller.categories,
-              itemSpacing: 8,
-              spacing: const EdgeInsets.symmetric(horizontal: 16),
-              builder: (Category item, int index) => ChoiceChip(
-                label: Text(item.name ?? ""),
-                selected: item == controller.selectedCategory,
-                onSelected: (_) => controller.selectedCategory = item,
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          SliderBuilder<slider.Banner>(
-            aspectRatio: 2,
-            sliders: controller.banners,
-            itemBuilder: (banner) => Clipper(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              backdrop: DecorationImage(
-                image: AssetImage(banner.image ?? ""),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          TitleBar(
-            title: 'Electis Choice',
-            onAction: () {},
-          ),
-          SizedBox(
-            height: 196,
-            child: ListViewBuilder<Product>.horizontal(
-              items: controller.products,
-              itemSpacing: 8,
-              spacing: const EdgeInsets.symmetric(horizontal: 16),
-              builder: (Product item, int index) => SizedBox(
-                key: ValueKey(index),
-                width: 148,
-                child: ProductItem(item),
-              ),
-            ),
-          ),
-          TitleBar(
-            title: 'New Arrival',
-            onAction: () {},
-          ),
-          SizedBox(
-            height: 196,
-            child: ListViewBuilder<Product>.horizontal(
-              items: controller.products,
-              itemSpacing: 8,
-              reverse: true,
-              spacing: const EdgeInsets.symmetric(horizontal: 16),
-              builder: (Product item, int index) => SizedBox(
-                key: ValueKey(index),
-                width: 148,
-                child: ProductItem(item),
-              ),
-            ),
-          ),
-          TitleBar(
-            title: 'Popular',
-            onAction: () {},
-          ),
-          SizedBox(
-            height: 196,
-            child: ListViewBuilder<Product>.horizontal(
-              items: controller.products,
-              itemSpacing: 8,
-              spacing: const EdgeInsets.symmetric(horizontal: 16),
-              builder: (Product item, int index) => SizedBox(
-                key: ValueKey(index),
-                width: 148,
-                child: ProductItem(item),
-              ),
-            ),
-          ),
-        ],
-      ), */
     );
   }
 }

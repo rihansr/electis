@@ -28,7 +28,7 @@ class SearchProductsView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                 ),
                 autofocus: true,
-                placeholder: string.searchHint,
+                placeholder: string.searchTitle,
                 style: theme.textTheme.bodyMedium?.copyWith(height: 1),
                 prefixIcon: IconButton(
                   onPressed: () => context.pop(),

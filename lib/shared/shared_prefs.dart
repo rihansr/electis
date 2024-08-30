@@ -1,6 +1,5 @@
 import 'package:electis/shared/local_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/other/settings_model.dart';
 import '../models/user/user_model.dart';
 final sharedPrefs = SharedPrefs.value;
