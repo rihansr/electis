@@ -1,5 +1,14 @@
 import 'dart:ui';
 
+final Extension extension = Extension.value;
+
+class Extension {
+  static Extension get value => Extension._();
+  Extension._();
+
+  int get uuid => DateTime.now().millisecondsSinceEpoch;
+}
+
 extension HexColor on Color {
   String get toHex => '#'
       '${alpha.toRadixString(16).padLeft(2, '0')}'

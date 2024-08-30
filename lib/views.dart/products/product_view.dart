@@ -1,21 +1,27 @@
-import 'package:electis/widgets/listview_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../shared/extensions.dart';
 import '../../models/product/product_model.dart';
+import '../../viewmodels/base_viewmodel.dart';
+import '../../viewmodels/cart_viewmodel.dart';
 import '../../viewmodels/product_viewmodel.dart';
 import '../../shared/strings.dart';
+import '../../widgets/badge_widget.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/clipper_widget.dart';
+import '../../widgets/listview_builder.dart';
+import '../order/cart_view.dart';
 import 'components/color_item.dart';
 
 class ProductDetailsView extends StatelessWidget {
   const ProductDetailsView({
     super.key,
+    required this.tag,
     required this.product,
   });
 
+  final String tag;
   final Product product;
 
   @override
@@ -29,6 +35,20 @@ class ProductDetailsView extends StatelessWidget {
             onPressed: () => context.pop(),
             icon: const Icon(Iconsax.arrow_left_2),
           ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: IconButton(
+                onPressed: () => popupCart(context),
+                padding: EdgeInsets.zero,
+                icon: Badges.count(
+                  count: provider<CartViewModel>(context: context, listen: true)
+                      .totalItems,
+                  child: const Icon(Iconsax.shopping_cart),
+                ),
+              ),
+            ),
+          ],
         ),
         body: ListView(
           physics: const BouncingScrollPhysics(),
@@ -42,10 +62,13 @@ class ProductDetailsView extends StatelessWidget {
                     color: theme.cardColor,
                     radius: 16,
                     alignment: Alignment.center,
-                    child: Image.asset(
-                      controller.product.image ?? '',
-                      height: 192,
-                      fit: BoxFit.contain,
+                    child: Hero(
+                      tag: '${tag}_{icon}',
+                      child: Image.asset(
+                        controller.product.image ?? '',
+                        height: 192,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                   Positioned(
@@ -147,14 +170,11 @@ class ProductDetailsView extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => '',
+          onPressed: controller.addToCart,
           backgroundColor: theme.colorScheme.primary,
-          icon: const Icon(
-            Iconsax.shopping_cart,
-            size: 20,
-            color: Colors.white,
-          ),
-          label: const Text('Add to Cart'),
+          foregroundColor: Colors.white,
+          icon: const Icon(Iconsax.shopping_cart, size: 18),
+          label: const Text('Add to Cart', style: TextStyle(height: 1)),
         ),
       ),
     );

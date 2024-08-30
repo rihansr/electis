@@ -7,9 +7,11 @@ import '../../../shared/strings.dart';
 import '../../../widgets/clipper_widget.dart';
 
 class ProductItem extends StatelessWidget {
+  final String tag;
   final Product item;
-  const ProductItem(
-    this.item, {
+  const ProductItem({
+    required this.tag,
+    required this.item,
     super.key,
   });
 
@@ -24,7 +26,7 @@ class ProductItem extends StatelessWidget {
     return InkWell(
       onTap: () => context.pushNamed(
         Routes.product,
-        extra: {'product': item},
+        extra: {'product': item, 'tag': tag},
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,9 +40,12 @@ class ProductItem extends StatelessWidget {
                   Positioned.fill(
                     top: 12,
                     bottom: 12,
-                    child: Image.asset(
-                      item.image ?? "",
-                      fit: BoxFit.contain,
+                    child: Hero(
+                      tag: '${tag}_{icon}',
+                      child: Image.asset(
+                        item.image ?? "",
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                   if (item.isNew)

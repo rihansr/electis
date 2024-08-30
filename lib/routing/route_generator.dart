@@ -36,6 +36,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         final data = state.extra as Map<String, dynamic>?;
         return ProductDetailsView(
+          tag: data?['tag'] as String? ?? '',
           product: (data?['product'] as Product?) ?? const Product(),
         );
       },

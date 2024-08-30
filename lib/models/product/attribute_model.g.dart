@@ -8,7 +8,7 @@ part of 'attribute_model.dart';
 
 class AttributeAdapter extends TypeAdapter<Attribute> {
   @override
-  final int typeId = 6;
+  final int typeId = 2;
 
   @override
   Attribute read(BinaryReader reader) {

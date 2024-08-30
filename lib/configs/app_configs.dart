@@ -5,13 +5,9 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/product/attribute_model.dart';
 import '../models/product/attribute_option_model.dart';
-import '../models/user/address_model.dart';
 import '../models/cart/cart_item_model.dart';
-import '../models/cart/cart_model.dart';
 import '../models/category/category_model.dart';
-import '../models/cart/date_time_adapter.dart';
 import '../models/product/product_model.dart';
-import '../models/user/user_model.dart';
 import '../shared/constants.dart';
 import '../shared/shared_prefs.dart';
 
@@ -42,16 +38,12 @@ class AppConfig {
     await getApplicationDocumentsDirectory().then((dir) => Hive.init(dir.path));
 
     Hive
-      ..registerAdapter(CartAdapter())
-      ..registerAdapter(DateTimeAdapter(), override: true, internal: true)
-      ..registerAdapter(UserAdapter())
-      ..registerAdapter(AddressAdapter())
       ..registerAdapter(CartItemAdapter())
       ..registerAdapter(ProductAdapter())
       ..registerAdapter(AttributeAdapter())
       ..registerAdapter(AttributeOptionAdapter())
       ..registerAdapter(CategoryAdapter());
 
-    await Hive.openBox<Cart>(kCartTable);
+    await Hive.openBox<CartItem>(kCartTable);
   }
 }

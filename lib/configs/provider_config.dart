@@ -12,7 +12,7 @@ List<SingleChildWidget> independentService = [];
 
 List<SingleChildWidget> universalService = [
   ChangeNotifierProvider<CartViewModel>(
-    create: (context) => CartViewModel(),
+    create: (context) => CartViewModel(context),
   ),
   ChangeNotifierProvider<AccountViewModel>(
     create: (context) => AccountViewModel(),

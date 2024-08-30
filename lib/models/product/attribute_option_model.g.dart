@@ -8,7 +8,7 @@ part of 'attribute_option_model.dart';
 
 class AttributeOptionAdapter extends TypeAdapter<AttributeOption> {
   @override
-  final int typeId = 7;
+  final int typeId = 3;
 
   @override
   AttributeOption read(BinaryReader reader) {

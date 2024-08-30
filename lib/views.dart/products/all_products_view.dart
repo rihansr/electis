@@ -89,7 +89,10 @@ class AllProductsView extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final product = controller.filterdProducts[index];
-                    return ProductItem(product);
+                    return ProductItem(
+                      item: product,
+                      tag: 'all_products_${product.id}',
+                    );
                   },
                   childCount: controller.filterdProducts.length,
                 ),

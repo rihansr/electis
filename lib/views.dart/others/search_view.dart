@@ -32,11 +32,7 @@ class SearchProductsView extends StatelessWidget {
                 style: theme.textTheme.bodyMedium?.copyWith(height: 1),
                 prefixIcon: IconButton(
                   onPressed: () => context.pop(),
-                  icon: const Icon(
-                    Iconsax.arrow_left,
-                    color: Colors.white,
-                    size: 18,
-                  ),
+                  icon: const Icon(Iconsax.arrow_left, size: 18),
                 ),
                 suffixIcon: const Icon(Icons.close, size: 18),
                 suffixInsets: const EdgeInsets.all(8),
@@ -59,7 +55,10 @@ class SearchProductsView extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final product = controller.searchedProducts[index];
-                    return ProductItem(product);
+                    return ProductItem(
+                      item: product,
+                      tag: 'search_${product.id}',
+                    );
                   },
                   childCount: controller.searchedProducts.length,
                 ),

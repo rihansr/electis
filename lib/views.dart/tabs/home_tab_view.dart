@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
-import 'package:electis/routing/routes.dart';
-import 'package:electis/shared/local_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../models/other/banner_model.dart' as slider;
 import '../../models/category/category_model.dart';
 import '../../models/product/product_model.dart';
+import '../../routing/routes.dart';
+import '../../shared/local_data.dart';
 import '../../viewmodels/home_viewmodel.dart';
 import '../../widgets/base_widget.dart';
 import '../../widgets/clipper_widget.dart';
@@ -86,7 +86,10 @@ class HomeTabView extends StatelessWidget {
                     builder: (Product item, int index) => SizedBox(
                       key: ValueKey(index),
                       width: 148,
-                      child: ProductItem(item),
+                      child: ProductItem(
+                        item: item,
+                        tag: 'electis_choice_products_${item.id}',
+                      ),
                     ),
                   ),
                 ),
@@ -114,7 +117,10 @@ class HomeTabView extends StatelessWidget {
                     builder: (Product item, int index) => SizedBox(
                       key: ValueKey(index),
                       width: 148,
-                      child: ProductItem(item),
+                      child: ProductItem(
+                        item: item,
+                        tag: 'new_arrival_products_${item.id}',
+                      ),
                     ),
                   ),
                 ),
@@ -142,7 +148,10 @@ class HomeTabView extends StatelessWidget {
                     builder: (Product item, int index) => SizedBox(
                       key: ValueKey(index),
                       width: 148,
-                      child: ProductItem(item),
+                      child: ProductItem(
+                        item: item,
+                        tag: 'popular_products_${item.id}',
+                      ),
                     ),
                   ),
                 ),

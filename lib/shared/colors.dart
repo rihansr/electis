@@ -73,7 +73,7 @@ class ColorPalette {
         hint: const Color(0xFF797595),
         outline: const Color(0xFFC1BFCE),
         divider: const Color(0xFFEBEBEF),
-        disable: const Color(0xFFC1BFCE),
+        disable: const Color(0xFFEBEBEF),
         error: const Color(0xFFDC3545),
         onError: const Color(0xFFFFFFFF),
       );

@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'attribute_option_model.dart';
 part 'attribute_model.g.dart';
 
-@HiveType(typeId: 6)
+@HiveType(typeId: 2)
 class Attribute {
   @HiveField(0)
   final String? name;

@@ -1,8 +1,5 @@
-import 'package:hive/hive.dart';
 import 'dart:convert';
-part 'address_model.g.dart';
 
-@HiveType(typeId: 3)
 class Address {
   const Address({
     this.id,
@@ -12,15 +9,10 @@ class Address {
     this.longitude,
   });
 
-  @HiveField(0)
   final int? id;
-  @HiveField(1)
   final String? label;
-  @HiveField(2)
   final String? address;
-  @HiveField(3)
   final num? latitude;
-  @HiveField(4)
   final num? longitude;
 
   Address copyWith({

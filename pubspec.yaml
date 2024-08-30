@@ -34,6 +34,7 @@ dependencies:
   # Other
   path_provider: ^2.1.4
   collection: ^1.18.0
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/files/
   
   fonts:
     - family: Inter

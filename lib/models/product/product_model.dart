@@ -3,7 +3,7 @@ import 'attribute_model.dart';
 import '../category/category_model.dart';
 part 'product_model.g.dart';
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 1)
 class Product {
   @HiveField(0)
   final int? id;

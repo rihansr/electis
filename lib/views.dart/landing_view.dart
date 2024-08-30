@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../shared/strings.dart';
 import 'others/addresses_view.dart';
-import 'tabs/cart_tab_view.dart';
+import 'order/cart_view.dart';
 import 'tabs/components.dart/search_bar.dart';
 import 'tabs/home_tab_view.dart';
 import 'tabs/likes_tab_view.dart';
@@ -104,7 +104,7 @@ class _LandingViewState extends State<LandingView> {
             HomeTabView(key: PageStorageKey('home_tab_page_key')),
             FeedsTabView(key: PageStorageKey('feeds_tab_page_key')),
             LikesTabView(key: PageStorageKey('likes_tab_page_key')),
-            CartTabView(key: PageStorageKey('cart_tab_page_key')),
+            SizedBox.shrink(),
             ProfileTabView(key: PageStorageKey('profile_tab_page_key')),
           ],
         ),
@@ -112,7 +112,11 @@ class _LandingViewState extends State<LandingView> {
           key: const Key('landing_main_bottom_nav_bar_key'),
           currentIndex: currentTab,
           onTap: (index) {
-            _currentTabNotifier.value = index;
+            if (index == 3) {
+              popupCart(context);
+            } else {
+              _currentTabNotifier.value = index;
+            }
           },
           items: _navItems
               .map(
